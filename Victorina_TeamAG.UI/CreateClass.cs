@@ -23,17 +23,26 @@ namespace Victorina_TeamAG.Create.UI
             }
 
             List<string> questionList = new List<string>(); // Лист вопросов
-            List<string> answersList = new List<string>(); // Лист правильных ответов
+            List<string> answersList = new List<string>(); // Лист ответов
+            List<int> rightAnswersList = new List<int>();
 
             for (int questionsCount = 1; questionsCount <= amountquestions; questionsCount++)
             {
                 Console.WriteLine($"Введите вопрос {questionsCount} для викторины:");
                 questionList.Add(Console.ReadLine());
-                Console.WriteLine("Введите правильный ответ:");
+                Console.WriteLine("Введите ответ 1:");
                 answersList.Add(Console.ReadLine());
+                Console.WriteLine("Введите ответ 2:");
+                answersList.Add(Console.ReadLine());
+                Console.WriteLine("Введите ответ 3:");
+                answersList.Add(Console.ReadLine());
+                Console.WriteLine("Введите ответ 4:");
+                answersList.Add(Console.ReadLine());
+                Console.WriteLine("Укажите номер правильного ответа:");
+                rightAnswersList.Add(Convert.ToInt32(Console.ReadLine()));
             }
 
-            _libraryService.Create(nameVictorina, questionList, answersList);
+            _libraryService.Create(nameVictorina, questionList, answersList, rightAnswersList);
         }
     }
 }

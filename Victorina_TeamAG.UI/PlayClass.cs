@@ -19,17 +19,21 @@ namespace Victorina_TeamAG.UI
                 foreach (string question in victorina.Questions)
                 {
                     Console.WriteLine($"{victorina.Questions.IndexOf(question) + 1}) {question}");
+                    for (int i = victorina.Questions.IndexOf(question) + victorina.Questions.IndexOf(question); i < 4*(1+victorina.Questions.IndexOf(question)); i++)
+                    {
+                        Console.WriteLine($"{i+1}) {victorina.Answers[i]}");
+                    }
                     Console.WriteLine("Ваш ответ:");
-                    string answer = Console.ReadLine();
+                    int answer = Convert.ToInt32(Console.ReadLine());
 
                     //if (String.Compare(victorina.Answers[victorina.Questions.IndexOf(question)], answer, StringComparison.OrdinalIgnoreCase))
-                    if(answer.Equals(victorina.Answers[victorina.Questions.IndexOf(question)]))
+                    if(answer==victorina.IndexOfRightAnswer[victorina.Questions.IndexOf(question)])
                     {
                         Console.WriteLine("Ваш ответ верный!");
                     }
                     else
                     {
-                        Console.WriteLine($"Правильный ответ: {victorina.Answers[victorina.Questions.IndexOf(question)]}");
+                        Console.WriteLine($"Правильный ответ {victorina.Answers[victorina.IndexOfRightAnswer[victorina.Questions.IndexOf(question)]]}");
                     }
                 }
             }
