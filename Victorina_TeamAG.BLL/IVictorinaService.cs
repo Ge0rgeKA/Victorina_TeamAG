@@ -8,6 +8,6 @@ namespace Victorina_TeamAG.BLL
 {
     public interface IVictorinaService
     {
-        void Create(string vicname, List<string> vicquestions, List<string> vicanswers);
+        void Create(string vicname, List<string> vicquestions, List<string> vicanswers, List<int> rightAnswer);
     }
 }
