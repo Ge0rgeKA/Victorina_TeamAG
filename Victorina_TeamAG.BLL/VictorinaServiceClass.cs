@@ -12,9 +12,10 @@ namespace Victorina_TeamAG.BLL
     {
         private readonly IVictorinaDAL _victorinaDAL = new VictorinaDAL();
 
-        public void CreateVictorina(string vicname, List <string> vicquestions)
+        public void Create(string vicname, List <string> vicquestions, List<string> vicanswers)
         {
-            var victorina = new Victorina(vicname, vicquestions);
+            var victorina = new Victorina(vicname, vicquestions, vicanswers);
+            _victorinaDAL.Create(victorina);
         }
     }
 }
