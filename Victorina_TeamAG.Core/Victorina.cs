@@ -2,15 +2,16 @@
 {
     public class Victorina
     {
+ 
         public string VictorinaName { get; set; }
         public List <string> Questions { get; set; }
         public List <string> Answers { get; set; }
 
-        public Victorina(string _victorinaName, List <string> _questions, List<string> _answers)
+        public Victorina(string victorinaName, List <string> questions, List<string> answers)
         {
-            VictorinaName = _victorinaName;
-            Questions = _questions;
-            Answers = _answers;
+            VictorinaName = victorinaName;
+            Questions = questions;
+            Answers = answers;
         }
     }
 }

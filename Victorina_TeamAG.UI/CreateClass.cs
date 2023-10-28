@@ -15,9 +15,17 @@ namespace Victorina_TeamAG.Create.UI
             Console.WriteLine("Введите название викторины:");
             string nameVictorina = Console.ReadLine();
 
+            Console.WriteLine("Введите количество вопросов:");
+            int amountquestions = Convert.ToInt32(Console.ReadLine());   
+            if (amountquestions <= 0)
+            {
+                amountquestions = 1;
+            }
+
             List<string> questionList = new List<string>(); // Лист вопросов
             List<string> answersList = new List<string>(); // Лист правильных ответов
-            for (int questionsCount = 1; questionsCount <= 3; questionsCount++)
+
+            for (int questionsCount = 1; questionsCount <= amountquestions; questionsCount++)
             {
                 Console.WriteLine($"Введите вопрос {questionsCount} для викторины:");
                 questionList.Add(Console.ReadLine());
@@ -29,3 +37,4 @@ namespace Victorina_TeamAG.Create.UI
         }
     }
 }
+

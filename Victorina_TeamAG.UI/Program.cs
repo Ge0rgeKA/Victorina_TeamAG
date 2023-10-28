@@ -39,7 +39,7 @@ while (isRun)
             CreateClass.CreateVictorina();
             break;
         case OurEnumClass.Play:
-            PlayClass.Playing();
+            PlayClass.PlayVictorina();
             break;
         case OurEnumClass.Clear:
             Console.Clear();
