@@ -10,11 +10,12 @@ namespace Victorina_TeamAG.DAL
 {
     public class VictorinaDAL : IVictorinaDAL
     {
-        private const string PATH = "D:\\Code\\SBD211\\G\\SavesVictorines\\Victorina.json";
+        //private const string PATH = "D:\\Code\\SBD211\\G\\SavesVictorines\\Victorina.json";
+        private const string PATH = "D:\\SBD211\\Anton\\SavesVictorines\\Victorina.json";
         public void Create(Victorina victorina) // В качестве папраметра указываем ранее созданную викторину в VictorinaServiceClass
         {
             var victorines = new List<Victorina>();
-            if(File.Exists(PATH))//уточнить у преподавателя
+            if(File.Exists(PATH))//уточнить у преподавателя: строки 17-23 ДОСТАЮТ ИНФОРМАЦИЮ ИЗ ФАЙЛА, ЕСЛИ ОН СУЩЕСТВУЕТ
             {
                 using (FileStream fs = new FileStream(PATH, FileMode.OpenOrCreate))
                 {
