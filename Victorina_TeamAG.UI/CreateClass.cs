@@ -16,7 +16,8 @@ namespace Victorina_TeamAG.Create.UI
             string nameVictorina = Console.ReadLine();
 
             Console.WriteLine("Введите количество вопросов:");
-            int amountquestions = Convert.ToInt32(Console.ReadLine());   
+            int amountquestions = Convert.ToInt32(Console.ReadLine());
+            
             if (amountquestions <= 0)
             {
                 amountquestions = 1;
@@ -36,8 +37,8 @@ namespace Victorina_TeamAG.Create.UI
                 answersList.Add(Console.ReadLine());
                 Console.WriteLine("Введите ответ 3:");
                 answersList.Add(Console.ReadLine());
-                Console.WriteLine("Введите ответ 4:");
-                answersList.Add(Console.ReadLine());
+                //Console.WriteLine("Введите ответ 4:"); //Для упрощения тестов сделаем викторины с 3 ответами
+                //answersList.Add(Console.ReadLine());
                 Console.WriteLine("Укажите номер правильного ответа:");
                 rightAnswersList.Add(Convert.ToInt32(Console.ReadLine()));
             }

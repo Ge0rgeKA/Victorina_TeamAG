@@ -8,12 +8,12 @@
         public List <string> Answers { get; set; }
         public List<int> IndexOfRightAnswer { get; set; }
 
-        public Victorina(string victorinaName, List <string> questions, List<string> answers, List<int> rightAnswer)
+        public Victorina(string victorinaName, List <string> questions, List<string> answers, List<int> indexOfRightAnswer)
         {
             VictorinaName = victorinaName;
             Questions = questions;
             Answers = answers;
-            IndexOfRightAnswer = rightAnswer;
+            IndexOfRightAnswer = indexOfRightAnswer;
         }
     }
 }
