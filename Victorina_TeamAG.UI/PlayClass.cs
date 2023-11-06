@@ -10,45 +10,72 @@ namespace Victorina_TeamAG.UI
 {
     public static class PlayClass
     {
-        public static void PlayVictorina()
+        public static int ChooseVictorina()
         {
             List<Victorina> victorinas = ReturnListVictorines();
-            Console.WriteLine($"Название викторины {victorinas[0].VictorinaName}");
-            foreach (Victorina victorina in victorinas)
+            Console.WriteLine("Выберте викторину для игры");
+            foreach (var victorina in victorinas)
             {
-                foreach (string question in victorina.Questions)
+                Console.WriteLine($"{victorinas.IndexOf(victorina) + 1}. {victorina.VictorinaName}");
+            }
+            Console.Write("Ваш выбор: ");
+            int userChoise = Convert.ToInt32(Console.ReadLine());
+            while (userChoise > victorinas.Count() || userChoise <= 0)
+            {
+                Console.WriteLine("Вы ввели номер за диапазоном имеющихся викторин");
+                Console.Write("Попробуйте снова: ");
+                userChoise = Convert.ToInt32(Console.ReadLine());
+            }
+
+            int VictrorinaIndex = userChoise - 1;
+            return VictrorinaIndex;
+
+        }
+        public static void PlayVictorina(int victrorinaIndex)
+        {
+            List<Victorina> victorinas = ReturnListVictorines();
+            Console.WriteLine($"Название викторины {victorinas[victrorinaIndex].VictorinaName}");
+
+            //foreach (Victorina victorina in victorinas)
+            //{
+                foreach (string question in victorinas[victrorinaIndex].Questions)
                 {
-                    Console.WriteLine($"{victorina.Questions.IndexOf(question) + 1}) {question}");
-                    for (int i = victorina.Questions.IndexOf(question) + victorina.Questions.IndexOf(question); i < 4*(1+victorina.Questions.IndexOf(question)); i++)
+                    int indexOfQuestion = victorinas[victrorinaIndex].Questions.IndexOf(question);
+                    Console.WriteLine($"{indexOfQuestion + 1}) {question}"); //вывод вопроса на экран с его номером - НЕ ИНДЕКСОМ
+
+                    for (int i = indexOfQuestion * 3, nA = 1; i < indexOfQuestion * 3 + 3; i++, nA++) //индекс ответов (a) для nA вопроса начинается с nA*n, где nA - индекс вопроса, n - количество ответов в викторине; условие: i < nA+3
                     {
-                        Console.WriteLine($"{i+1}) {victorina.Answers[i]}");
+                        Console.WriteLine($"{nA}. {victorinas[victrorinaIndex].Answers[i]}");
                     }
-                    Console.WriteLine("Ваш ответ:");
+
+                    Console.Write("Ваш ответ: ");
                     int answer = Convert.ToInt32(Console.ReadLine());
 
-                    //if (String.Compare(victorina.Answers[victorina.Questions.IndexOf(question)], answer, StringComparison.OrdinalIgnoreCase))
-                    if(answer==victorina.IndexOfRightAnswer[victorina.Questions.IndexOf(question)])
+                    if(answer == victorinas[victrorinaIndex].IndexOfRightAnswer[indexOfQuestion])
                     {
-                        Console.WriteLine("Ваш ответ верный!");
+                        Console.WriteLine("Ваш ответ верный!\n");
                     }
                     else
                     {
-                        Console.WriteLine($"Правильный ответ {victorina.Answers[victorina.IndexOfRightAnswer[victorina.Questions.IndexOf(question)]]}");
+                        //Console.WriteLine($"Правильный ответ: {victorina.Answers[victorina.IndexOfRightAnswer[indexOfQuestion]]}\n");
+                        Console.WriteLine($"Правильный ответ: {victorinas[victrorinaIndex].IndexOfRightAnswer[indexOfQuestion]}\n");
                     }
-                }
+               // }
             }
         }
 
         public static List<Victorina> ReturnListVictorines()
         {
             //const string PATH = "D:\\Code\\SBD211\\G\\SavesVictorines\\Victorina.json";
-            const string PATH = "D:\\SBD211\\Anton\\SavesVictorines\\Victorina.json";
+            string PATH = PathForSave.YourPath();
             var victorines = new List<Victorina>();
-            using (FileStream fs = new FileStream(PATH, FileMode.OpenOrCreate))
+            if (File.Exists(PATH))
             {
-                    victorines = JsonSerializer.Deserialize<List<Victorina>>(fs); //уточнить
+                using (FileStream fs = new FileStream(PATH, FileMode.OpenOrCreate))
+                {
+                    victorines = JsonSerializer.Deserialize<List<Victorina>>(fs);
+                }
             }
-
             return victorines;  
         }
     }
